@@ -1,0 +1,94 @@
+name:                flightmonitor
+version:             0.1.0.0
+github:              "agrafix/flightmonitor"
+license:             BSD3
+author:              "Alexander Thiemann"
+maintainer:          "mail@athiemann.net"
+copyright:           "2018 Alexander Thiemann <mail@athiemann.net>"
+
+extra-source-files:
+  - README.md
+  - ChangeLog.md
+
+description:         Please see the README on GitHub at <https://github.com/agrafix/flightmonitor#readme>
+
+dependencies:
+  - base >= 4.7 && < 5
+  - text
+  - vector
+  - bytestring
+  - unordered-containers
+  - hashable
+  - scientific
+  - mtl
+  - aeson
+  - yaml
+  - time
+  - wreq
+  - lens
+  - safe
+  - http-client
+  - http-client-tls
+  - connection
+
+ghc-options: -Wall -Werror
+
+default-extensions:
+  - ApplicativeDo
+  - BangPatterns
+  - ConstraintKinds
+  - DataKinds
+  - DefaultSignatures
+  - DeriveFoldable
+  - DeriveFunctor
+  - DeriveGeneric
+  - DeriveLift
+  - DeriveTraversable
+  - EmptyCase
+  - ExistentialQuantification
+  - FlexibleContexts
+  - FlexibleInstances
+  - FunctionalDependencies
+  - GADTs
+  - GeneralizedNewtypeDeriving
+  - InstanceSigs
+  - KindSignatures
+  - LambdaCase
+  - MultiParamTypeClasses
+  - MultiWayIf
+  - NamedFieldPuns
+  - OverloadedStrings
+  - PatternSynonyms
+  - RankNTypes
+  - ScopedTypeVariables
+  - StandaloneDeriving
+  - TupleSections
+  - TypeApplications
+  - TypeFamilies
+  - TypeFamilyDependencies
+  - TypeOperators
+
+library:
+  source-dirs: src
+
+executables:
+  flightmonitor-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - flightmonitor
+
+tests:
+  flightmonitor-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - flightmonitor
