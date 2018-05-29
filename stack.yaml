@@ -1,3 +1,6 @@
 resolver: lts-11.10
 packages:
   - .
+extra-deps:
+  - text-utils-0.1.0.0
+  - simple-logger-0.0.4

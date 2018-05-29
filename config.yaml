@@ -1,0 +1,22 @@
+amadeusKey: YOUR_KEY_HERE
+weekLookAhead: 5
+trips:
+  - origin: SFO
+    destination: HNL
+    departure:
+      dayOfWeek: friday
+      time: "16:00"
+    return:
+      returnday:
+        - monday
+        - "07:00"
+    nonStop: true
+    maxPriceUSD: 700
+  - origin: SFO
+    destination: FRA
+    departure:
+      dayOfWeek: friday
+    return:
+      length: 14
+    nonStop: true
+    maxPriceUSD: 3000

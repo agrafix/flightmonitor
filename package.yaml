@@ -30,6 +30,8 @@ dependencies:
   - http-client
   - http-client-tls
   - connection
+  - text-utils
+  - simple-logger
 
 ghc-options: -Wall -Werror
 

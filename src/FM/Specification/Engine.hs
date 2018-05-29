@@ -49,8 +49,29 @@ searchRequestFromSpec cw tripSpec =
 
 handleResults :: TripSpec -> V.Vector Trip -> V.Vector Trip
 handleResults ts =
-    priceFilter
+    emptyTripFilter . emptyItineraryFilter . departureFilter . priceFilter
     where
+      emptyTripFilter =
+          V.filter $ \t -> not (V.null $ t_itineraries t)
+      emptyItineraryFilter =
+          V.map $ \t ->
+          t
+          { t_itineraries =
+                  V.filter (\it -> not (V.null (i_outbound it))) (t_itineraries t)
+          }
+      goodFlight earliestDeparture flight =
+          localTimeOfDay (f_departure flight) >= earliestDeparture
+      departureFilter =
+          case ds_time (ts_departure ts) of
+            Nothing -> id
+            Just departureTime ->
+                V.map $ \t ->
+                t
+                { t_itineraries =
+                        V.map (\it ->
+                                      it { i_outbound = V.filter (goodFlight departureTime) (i_outbound it) })
+                        (t_itineraries t)
+                }
       priceFilter =
           case ts_maxPriceUSD ts of
             Nothing -> id
